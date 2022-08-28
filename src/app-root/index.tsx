@@ -1,12 +1,15 @@
-import React from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import useCachedResources from './hooks/useCachedResources'
+import React from 'react'
 import { Text, View } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+
+import useCachedResources from './hooks/useCachedResources'
 
 const AppRoot: React.FC = () => {
   const isLoadingComplete = useCachedResources()
 
+  /* Checking if the app is loading and if it is not loading it will return null. If it is loading it
+  will return the SafeAreaProvider. */
   if (!isLoadingComplete) {
     return null
   } else {

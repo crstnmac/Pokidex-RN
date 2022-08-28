@@ -1,4 +1,3 @@
-import { FontAwesome } from '@expo/vector-icons'
 import {
   SpaceGrotesk_300Light,
   SpaceGrotesk_400Regular,
@@ -6,13 +5,17 @@ import {
   SpaceGrotesk_600SemiBold,
   SpaceGrotesk_700Bold,
 } from '@expo-google-fonts/space-grotesk'
-import { useEffect, useState } from 'react'
-import * as SplashScreen from 'expo-splash-screen'
+import { FontAwesome } from '@expo/vector-icons'
 import * as Font from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen'
+import { useEffect, useState } from 'react'
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false)
 
+  /**
+   * Loads resources and data, and then hides the splash screen.
+   */
   useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
