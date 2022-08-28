@@ -3,5 +3,13 @@
   "compilerOptions": {
     "jsx": "react",
     "strict": true
-  }
+  },
+  "include": [
+    "./src/**/*",
+    "./App.tsx",
+    ".eslintrc.js",
+    "babel.config.js",
+    "./lib.d.ts",
+    "./tailwind.config.js"
+  ]
 }
