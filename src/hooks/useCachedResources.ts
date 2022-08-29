@@ -20,7 +20,7 @@ export default function useCachedResources() {
     async function loadResourcesAndDataAsync() {
       try {
         // eslint-disable-next-line no-void
-        void SplashScreen.preventAutoHideAsync()
+        SplashScreen.preventAutoHideAsync()
         //load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
@@ -35,12 +35,12 @@ export default function useCachedResources() {
       } finally {
         setLoadingComplete(true)
         // eslint-disable-next-line no-void
-        void SplashScreen.hideAsync()
+        SplashScreen.hideAsync()
       }
     }
 
     // eslint-disable-next-line no-void
-    void loadResourcesAndDataAsync()
+    loadResourcesAndDataAsync()
   }, [])
 
   return isLoadingComplete

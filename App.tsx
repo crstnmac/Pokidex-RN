@@ -1,12 +1,4 @@
-import React from 'react'
-
-import AppRoot from './src/app-root'
-
-/**
- * App is a React.FC that returns AppRoot
- */
-const App: React.FC = () => {
-  return <AppRoot />
-}
+import App from './src/App'
+import 'react-native-gesture-handler'
 
 export default App
