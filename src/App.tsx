@@ -1,12 +1,24 @@
 import { StatusBar } from 'expo-status-bar'
 import { useColorScheme } from 'nativewind'
 import React from 'react'
-import { View } from 'react-native'
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import useCachedResources from './hooks/useCachedResources'
 import Navigation from './navigation'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      retry: false,
+      staleTime: 5 * 60 * 1000,
+    },
+  },
+})
 
 const AppRoot: React.FC = () => {
   const isLoadingComplete = useCachedResources()
@@ -29,7 +41,9 @@ const AppRoot: React.FC = () => {
 const ProviderWrapper: React.FC = () => {
   return (
     <SafeAreaProvider>
-      <AppRoot />
+      <QueryClientProvider client={queryClient}>
+        <AppRoot />
+      </QueryClientProvider>
     </SafeAreaProvider>
   )
 }

@@ -27,6 +27,6 @@
       }
     }
   },
-  "files": ["environment.d.ts"],
+  "files": ["lib.d.ts"],
   "extends": "expo/tsconfig.base"
 }
