@@ -6,6 +6,7 @@ import {
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { ColorSchemeName } from 'react-native'
+import ModalScreen from 'screens/ModalScreen'
 import HomeScreen from '../screens/HomeScreen'
 import NotFoundScreen from '../screens/NotFoundScreen'
 import { RootStackParamList, RootTabParamList } from '../types'
@@ -45,18 +46,30 @@ function Home() {
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Root"
-        options={{
-          headerShown: false,
-        }}
-        component={Home}
-      />
-      <Stack.Screen
-        name="NotFound"
-        component={NotFoundScreen}
-        options={{ title: 'Oops!' }}
-      ></Stack.Screen>
+      <Stack.Group>
+        <Stack.Screen
+          name="Root"
+          options={{
+            headerShown: false,
+          }}
+          component={Home}
+        />
+        <Stack.Screen
+          name="NotFound"
+          component={NotFoundScreen}
+          options={{ title: 'Oops!' }}
+        ></Stack.Screen>
+      </Stack.Group>
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Screen
+          name="Modal"
+          component={ModalScreen}
+          initialParams={{ name: 'bulbasaur' }}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   )
 }

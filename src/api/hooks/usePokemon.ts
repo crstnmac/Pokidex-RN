@@ -5,7 +5,7 @@ function usePokemon() {
   return useQuery([], () => apiClient.listPokemons(0, 1154))
 }
 
-function usePokemonById({ id }) {
+function usePokemonById({ id }: { id: number }) {
   return useQuery(
     [`pokemon-${id}`, { id }],
     () => apiClient.getPokemonById(id),
@@ -13,4 +13,14 @@ function usePokemonById({ id }) {
   )
 }
 
-export { usePokemon, usePokemonById }
+function usePokemonByName({ name }: { name: string }) {
+  return useQuery(
+    [`${name}`, { name }],
+    () => apiClient.getPokemonByName(name),
+    {
+      enabled: !!name,
+    }
+  )
+}
+
+export { usePokemon, usePokemonById, usePokemonByName }
