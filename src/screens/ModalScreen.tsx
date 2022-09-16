@@ -2,11 +2,12 @@ import Button from 'components/atoms/Button'
 import React from 'react'
 import { View, Text, Image } from 'react-native'
 import { usePokemonByName } from 'api/hooks/usePokemon'
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import { ModalScreenRouteProps } from 'types'
 
 export default function ModalScreen() {
   const navigation = useNavigation()
-  const route: RouteProp<{ params: { name: string } }, 'params'> = useRoute()
+  const route = useRoute<ModalScreenRouteProps>()
 
   const { data: poke, isLoading: pokeLoading } = usePokemonByName({
     name: route.params.name,
