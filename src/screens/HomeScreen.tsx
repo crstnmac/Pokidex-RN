@@ -1,5 +1,5 @@
 import { FlashList, ListRenderItemInfo } from '@shopify/flash-list'
-import { usePokemon, usePokemonByName } from 'api/hooks/usePokemon'
+import { usePokemon } from 'api/hooks/usePokemon'
 import layout from 'constants/layout'
 import { NamedAPIResource } from 'pokenode-ts'
 import React from 'react'
@@ -8,14 +8,11 @@ import { RootTabScreenProps } from '../types'
 export default function HomeScreen({
   navigation,
 }: RootTabScreenProps<'HomeScreen'>) {
-  const { isLoading: pokimonLoading, data: pokemonData } = usePokemon()
-  const { isLoading: loadingBulbasaur, data: pokiData } = usePokemonByName({
-    name: 'bulbasaur',
-  })
-
-  if (!loadingBulbasaur) {
-    console.log(pokiData?.sprites.back_default)
-  }
+  const {
+    isLoading: pokimonLoading,
+    data: pokemonData,
+    isError: pokeError,
+  } = usePokemon()
 
   if (pokimonLoading) {
     return (
@@ -25,11 +22,19 @@ export default function HomeScreen({
     )
   }
 
+  if (pokeError) {
+    return (
+      <View>
+        <Text>Something went wrong...</Text>
+      </View>
+    )
+  }
+
   const { window } = layout
 
-  function onClickPokimon({ name }) {
+  function onClickPokimon({ name }: { name: string }) {
     navigation.navigate('Modal', {
-      name: name as string,
+      name,
     })
   }
 
